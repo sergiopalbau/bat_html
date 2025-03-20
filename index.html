@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nivel Batería con Battery API</title>
+</head>
+<body>
+<h1>Nivel Batería con Battery API</h1>
+
+<div>Nivel de Batería: <span id="batteryLevel"></span>%</div>
+
+<script>
+
+navigator.getBattery().then(function (battery) {
+	
+	// Volcamos la información por consola
+	console.log("Nivel de batería " + battery.level * 100 + "%");
+	
+	// Elemento del DOM
+	var batteryLevel = document.getElementById("batteryLevel");
+	batteryLevel.innerHTML = battery.level * 100;
+	
+	battery.addEventListener('levelchange', function() {
+		batteryLevel.innerHTML = battery.level * 100;
+		console.log("Nivel de batería " + battery.level * 100 + "%");
+	});
+	
+});
+
+</script>
+
+
+<br/><br/>
+<hr>
+
+
+</body>
+</html>
